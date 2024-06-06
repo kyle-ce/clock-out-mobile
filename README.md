@@ -12,12 +12,13 @@ The Time Calculator is a simple tool that allows you to calculate your clock-out
 3. The app will automatically calculate and display your estimated clock-out time.
 
 ### Legal Compliance
-The app currently assumes a default 5-hour lunch break duration, based on legal requirements in California. However, users from other regions may need to adjust this setting to comply with local regulations.
+The app currently assumes a default 5-hour lunch break duration, based on legal requirements in California.
 
 ### Future Improvements
-- Customizable lunch break duration to accommodate different legal requirements and work hours.
-- Develop theme with colors, fonts and sizes to make app distigushable.
+- Add splash screen and app icon
 - Enhanced user interface with customizable themes and styling options.
+- Customizable lunch break duration to accommodate different legal requirements and work hours.
+- Launch to google play store
 ### Contributions
 Contributions to the Time Calculator project are welcome! If you have ideas for new features, bug fixes, or enhancements, feel free to submit a pull request or open an issue on GitHub.
 
