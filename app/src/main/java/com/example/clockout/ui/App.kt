@@ -15,7 +15,6 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
@@ -119,20 +118,20 @@ private fun LunchSlider(title: String, sliderPosition: Float, onvalueChange: (Fl
 @Composable
 private fun TimePickerCard(title: String, timePickerState: TimePickerState) {
     var colors = TimePickerDefaults.colors(
-        clockDialColor = MaterialTheme.colorScheme.surface, // Light Beige for a neutral look
-        clockDialSelectedContentColor = MaterialTheme.colorScheme.onPrimary, // Home Depot Orange for the hands
-        clockDialUnselectedContentColor = MaterialTheme.colorScheme.onSurface, // Dark Brown for the dial numbers
-        selectorColor = MaterialTheme.colorScheme.primary, // Home Depot Orange for the hands
-        containerColor = MaterialTheme.colorScheme.surface, // Light Beige to blend with the overall background
-        periodSelectorBorderColor = MaterialTheme.colorScheme.primary, // Home Depot Orange for consistency
-        periodSelectorSelectedContainerColor = MaterialTheme.colorScheme.primary, // Home Depot Orange for the selected period
-        periodSelectorUnselectedContainerColor = Color.Transparent, // Transparent for the unselected period
-        periodSelectorSelectedContentColor = MaterialTheme.colorScheme.onPrimary, // White for good contrast
-        periodSelectorUnselectedContentColor = MaterialTheme.colorScheme.primary, // Home Depot Orange for unselected period text
-        timeSelectorSelectedContainerColor = MaterialTheme.colorScheme.primary, // Home Depot Orange for the selected time
-        timeSelectorUnselectedContainerColor = MaterialTheme.colorScheme.surface, // Light Beige for the unselected time
-        timeSelectorSelectedContentColor = MaterialTheme.colorScheme.onPrimary, // White for good contrast
-        timeSelectorUnselectedContentColor = MaterialTheme.colorScheme.onSurface // Dark Brown for readability
+        clockDialColor = MaterialTheme.colorScheme.surface,
+        clockDialSelectedContentColor = MaterialTheme.colorScheme.onPrimary,
+        clockDialUnselectedContentColor = MaterialTheme.colorScheme.onSurface,
+        selectorColor = MaterialTheme.colorScheme.primary,
+        containerColor = MaterialTheme.colorScheme.surface,
+        periodSelectorBorderColor = MaterialTheme.colorScheme.primary,
+        periodSelectorSelectedContainerColor = MaterialTheme.colorScheme.primary,
+        periodSelectorUnselectedContainerColor = Color.Transparent,
+        periodSelectorSelectedContentColor = MaterialTheme.colorScheme.onPrimary,
+        periodSelectorUnselectedContentColor = MaterialTheme.colorScheme.primary,
+        timeSelectorSelectedContainerColor = MaterialTheme.colorScheme.primary,
+        timeSelectorUnselectedContainerColor = MaterialTheme.colorScheme.surface,
+        timeSelectorSelectedContentColor = MaterialTheme.colorScheme.onPrimary,
+        timeSelectorUnselectedContentColor = MaterialTheme.colorScheme.onSurface
     )
 
     Log.i("Clockface colors", "TimePickerCard: ${MaterialTheme.colorScheme.primary} ")
