@@ -1,5 +1,7 @@
 package com.example.clockout.ui
 
+import android.util.Log
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -7,14 +9,18 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
 import androidx.compose.material3.TimePicker
+import androidx.compose.material3.TimePickerDefaults
 import androidx.compose.material3.TimePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -23,8 +29,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.clockout.ui.theme.ClockoutTheme
@@ -43,12 +51,16 @@ fun App(modifier: Modifier = Modifier) {
             .padding(top = 16.dp)
     ) {
         TimePickerCard("Clock In", clockInTime)
-        Card(modifier = Modifier.padding(horizontal = 16.dp)) {
+        Card(
+            modifier = Modifier.padding(horizontal = 16.dp),
+            elevation = CardDefaults.cardElevation(4.dp)
+        ) {
             Row(modifier = Modifier.fillMaxWidth()) {
                 LunchSlider("Lunch Break", lunchBreak) { newValue -> lunchBreak = newValue }
             }
-            Row (modifier = Modifier
-                .padding(all = 16.dp)){
+            Row(
+                modifier = Modifier.padding(all = 16.dp)
+            ) {
                 OutlinedTextField(
                     value = lunchTime,
                     onValueChange = { /* Do nothing, this field is calculated */ },
@@ -62,6 +74,8 @@ fun App(modifier: Modifier = Modifier) {
                     onValueChange = { /* Do nothing, this field is calculated */ },
                     label = { Text("Clockout") },
                     readOnly = true,
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+
                     modifier = Modifier.weight(.5f)
                 )
             }
@@ -104,21 +118,44 @@ private fun LunchSlider(title: String, sliderPosition: Float, onvalueChange: (Fl
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun TimePickerCard(title: String, timePickerState: TimePickerState) {
+    var colors = TimePickerDefaults.colors(
+        clockDialColor = MaterialTheme.colorScheme.surface, // Light Beige for a neutral look
+        clockDialSelectedContentColor = MaterialTheme.colorScheme.onPrimary, // Home Depot Orange for the hands
+        clockDialUnselectedContentColor = MaterialTheme.colorScheme.onSurface, // Dark Brown for the dial numbers
+        selectorColor = MaterialTheme.colorScheme.primary, // Home Depot Orange for the hands
+        containerColor = MaterialTheme.colorScheme.surface, // Light Beige to blend with the overall background
+        periodSelectorBorderColor = MaterialTheme.colorScheme.primary, // Home Depot Orange for consistency
+        periodSelectorSelectedContainerColor = MaterialTheme.colorScheme.primary, // Home Depot Orange for the selected period
+        periodSelectorUnselectedContainerColor = Color.Transparent, // Transparent for the unselected period
+        periodSelectorSelectedContentColor = MaterialTheme.colorScheme.onPrimary, // White for good contrast
+        periodSelectorUnselectedContentColor = MaterialTheme.colorScheme.primary, // Home Depot Orange for unselected period text
+        timeSelectorSelectedContainerColor = MaterialTheme.colorScheme.primary, // Home Depot Orange for the selected time
+        timeSelectorUnselectedContainerColor = MaterialTheme.colorScheme.surface, // Light Beige for the unselected time
+        timeSelectorSelectedContentColor = MaterialTheme.colorScheme.onPrimary, // White for good contrast
+        timeSelectorUnselectedContentColor = MaterialTheme.colorScheme.onSurface // Dark Brown for readability
+    )
+
+    Log.i("Clockface colors", "TimePickerCard: ${MaterialTheme.colorScheme.primary} ")
     Card(
         Modifier
             .fillMaxWidth()
             .padding(all = 16.dp), elevation = CardDefaults.cardElevation(4.dp)
     ) {
-        Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.fillMaxWidth()) {
-            Text(title,
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.fillMaxWidth()
+        ) {
+            Text(
+                title,
                 Modifier
                     .padding(top = 8.dp)
-                    .align(Alignment.CenterHorizontally))
+                    .align(Alignment.CenterHorizontally)
+            )
             TimePicker(
                 state = timePickerState,
                 modifier = Modifier
                     .padding(top = 16.dp)
-                    .align(Alignment.CenterHorizontally)
+                    .align(Alignment.CenterHorizontally),
+                colors = colors
             )
         }
     }
@@ -138,6 +175,7 @@ private fun calculateClockOutTime(clockInTime: TimePickerState, lunchBreak: Floa
         clockOutMinute.toString().padStart(2, '0')
     } ${if (clockOutHour >= 12) "PM" else "AM"}"
 }
+
 @OptIn(ExperimentalMaterial3Api::class)
 private fun calculateLunchTime(clockInTime: TimePickerState): String {
     val lunchHour = if (clockInTime.hour + 5 == 12) 12 else (clockInTime.hour + 5) % 12
@@ -149,7 +187,14 @@ private fun calculateLunchTime(clockInTime: TimePickerState): String {
 @Preview(showBackground = true)
 @Composable
 fun AppPreview() {
-    ClockoutTheme {
-        App()
+    ClockoutTheme(darkTheme = !false) {
+        Scaffold(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color.Blue)
+        ) { innerPadding ->
+            App(modifier = Modifier.padding(innerPadding))
+        }
     }
+
 }
