@@ -30,11 +30,11 @@ The Time Calculator is released under the MIT License.
 ![image](https://github.com/kyle-ce/time-calculator-mobile/assets/108813795/8c870f21-2d45-4f9d-ad1a-536ffc61aba4)
 
 ### Light 
-![img.png](img.png)
+<img width="292" alt="Screenshot 2024-06-08 at 5 04 51 PM" src="https://github.com/kyle-ce/time-calculator-mobile/assets/108813795/1d96e3ef-ae4d-49d6-9c92-f863dff8ceb5">
+
 
 ### Dark
-![img_1.png](img_1.png)
-
+<img width="288" alt="Screenshot 2024-06-08 at 5 05 20 PM" src="https://github.com/kyle-ce/time-calculator-mobile/assets/108813795/3b68563a-d4f7-4bd7-b80f-28fe72462312">
 
 
 
