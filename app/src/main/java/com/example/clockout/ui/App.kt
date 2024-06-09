@@ -17,6 +17,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Slider
+import androidx.compose.material3.SliderDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TimePicker
 import androidx.compose.material3.TimePickerDefaults
@@ -96,6 +97,9 @@ fun ClockOutTimeDisplay(clockOutTime: String) {
 
 @Composable
 private fun LunchSlider(title: String, sliderPosition: Float, onvalueChange: (Float) -> Unit) {
+    var colors = SliderDefaults.colors(
+        inactiveTrackColor = MaterialTheme.colorScheme.surface
+    )
     Column {
         Text(text = title, Modifier.padding(all = 16.dp))
         Slider(value = sliderPosition,
@@ -104,7 +108,8 @@ private fun LunchSlider(title: String, sliderPosition: Float, onvalueChange: (Fl
             steps = 3,
             modifier = Modifier
                 .semantics { contentDescription = "Lunch Break Slider" }
-                .padding(horizontal = 16.dp))
+                .padding(horizontal = 16.dp),
+            colors = colors)
         Text(
             text = "${sliderPosition.toInt()} minutes",
             Modifier
@@ -122,15 +127,19 @@ private fun TimePickerCard(title: String, timePickerState: TimePickerState) {
         clockDialSelectedContentColor = MaterialTheme.colorScheme.onPrimary,
         clockDialUnselectedContentColor = MaterialTheme.colorScheme.onSurface,
         selectorColor = MaterialTheme.colorScheme.primary,
-        containerColor = MaterialTheme.colorScheme.surface,
-        periodSelectorBorderColor = MaterialTheme.colorScheme.primary,
+
+        containerColor = Color.Blue,
+
+        periodSelectorBorderColor = Color.Transparent,
         periodSelectorSelectedContainerColor = MaterialTheme.colorScheme.primary,
         periodSelectorUnselectedContainerColor = Color.Transparent,
-        periodSelectorSelectedContentColor = MaterialTheme.colorScheme.onPrimary,
-        periodSelectorUnselectedContentColor = MaterialTheme.colorScheme.primary,
-        timeSelectorSelectedContainerColor = MaterialTheme.colorScheme.primary,
-        timeSelectorUnselectedContainerColor = MaterialTheme.colorScheme.surface,
-        timeSelectorSelectedContentColor = MaterialTheme.colorScheme.onPrimary,
+        periodSelectorSelectedContentColor = MaterialTheme.colorScheme.surface,
+        periodSelectorUnselectedContentColor = MaterialTheme.colorScheme.onSurface,
+
+// TODO: fix surface color tint to match clockDialColor
+        timeSelectorSelectedContainerColor = MaterialTheme.colorScheme.surface.copy(alpha = .9f),
+        timeSelectorUnselectedContainerColor = Color.Transparent,
+        timeSelectorSelectedContentColor = MaterialTheme.colorScheme.onSurface,
         timeSelectorUnselectedContentColor = MaterialTheme.colorScheme.onSurface
     )
 
@@ -138,7 +147,9 @@ private fun TimePickerCard(title: String, timePickerState: TimePickerState) {
     Card(
         Modifier
             .fillMaxWidth()
-            .padding(all = 16.dp), elevation = CardDefaults.cardElevation(4.dp)
+            .padding(all = 16.dp),
+        elevation = CardDefaults.cardElevation(4.dp),
+
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.fillMaxWidth()
