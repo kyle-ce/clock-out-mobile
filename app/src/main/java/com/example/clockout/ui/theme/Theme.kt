@@ -11,24 +11,32 @@ private val LightColorScheme = lightColorScheme(
 // Primary
     primary = DarkOrange,
     onPrimary = Color.White,
+    primaryContainer =  Color.White.copy(alpha = .9f),
+    onPrimaryContainer = Color.Black,
 // Secondary
-
-// Background
+// Tertiary: Simple App no need for multiple colors - same as primary for TimePicker
+    tertiaryContainer =  DarkOrange,
+    onTertiaryContainer = Color.White,
     background = DarkOrange,
 // Surface
     surface = Color.White,
-    surfaceTint = Color.White,
-    surfaceVariant = Color.White.copy(alpha = .9f), // Card BG
+    surfaceVariant = Color.White, // Card BG
     onSurface = Color.Black,
 )
 
 private val DarkColorScheme = darkColorScheme(
 // Primary
     primary = DarkOrange,
-    onPrimary = Color.White,
+    onPrimary = VeryDarkGray,
+    primaryContainer = VeryDarkGray.copy(alpha = .9f),
+    onPrimaryContainer = LightGray,
 // Secondary
+// Tertiary: Simple App no need for multiple colors - same as primary for TimePicker
+    tertiaryContainer =  DarkOrange,
+    onTertiaryContainer = VeryDarkGray,
 // Background
     background = AlmostBlack,
+
 // Surface
     surface = VeryDarkGray,
     onSurface = LightGray,
