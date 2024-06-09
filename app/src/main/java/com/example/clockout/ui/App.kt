@@ -1,6 +1,5 @@
 package com.example.clockout.ui
 
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -17,10 +16,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Slider
-import androidx.compose.material3.SliderDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TimePicker
-import androidx.compose.material3.TimePickerDefaults
 import androidx.compose.material3.TimePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -99,7 +96,8 @@ fun ClockOutTimeDisplay(clockOutTime: String) {
 private fun LunchSlider(title: String, sliderPosition: Float, onvalueChange: (Float) -> Unit) {
     Column {
         Text(text = title, Modifier.padding(all = 16.dp))
-        Slider(value = sliderPosition,
+        Slider(
+            value = sliderPosition,
             onValueChange = { newValue -> onvalueChange(newValue) },
             valueRange = 0f..60f,
             steps = 3,
@@ -125,7 +123,7 @@ private fun TimePickerCard(title: String, timePickerState: TimePickerState) {
             .padding(all = 16.dp),
         elevation = CardDefaults.cardElevation(4.dp),
 
-    ) {
+        ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.fillMaxWidth()
         ) {
@@ -171,7 +169,7 @@ private fun calculateLunchTime(clockInTime: TimePickerState): String {
 @Preview(showBackground = true)
 @Composable
 fun AppPreview() {
-    ClockoutTheme(darkTheme = !false) {
+    ClockoutTheme {
         Scaffold(
             modifier = Modifier
                 .fillMaxSize()
