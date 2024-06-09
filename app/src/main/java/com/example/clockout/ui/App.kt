@@ -16,6 +16,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Slider
+import androidx.compose.material3.SliderDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TimePicker
 import androidx.compose.material3.TimePickerState
@@ -33,6 +34,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.clockout.ui.theme.ClockoutTheme
+import com.example.clockout.ui.theme.Teal
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -101,6 +103,9 @@ private fun LunchSlider(title: String, sliderPosition: Float, onvalueChange: (Fl
             onValueChange = { newValue -> onvalueChange(newValue) },
             valueRange = 0f..60f,
             steps = 3,
+            colors = SliderDefaults.colors(
+                thumbColor = Color.White
+            ),
             modifier = Modifier
                 .semantics { contentDescription = "Lunch Break Slider" }
                 .padding(horizontal = 16.dp),
@@ -121,6 +126,7 @@ private fun TimePickerCard(title: String, timePickerState: TimePickerState) {
         Modifier
             .fillMaxWidth()
             .padding(all = 16.dp),
+
         elevation = CardDefaults.cardElevation(4.dp),
 
         ) {
