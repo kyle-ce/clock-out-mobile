@@ -171,7 +171,7 @@ private fun calculateLunchTime(clockInTime: TimePickerState): String {
 @Preview(showBackground = true)
 @Composable
 fun AppPreview() {
-    ClockoutTheme(darkTheme = !false) {
+    ClockoutTheme(darkTheme = false) {
         Scaffold(
             modifier = Modifier
                 .fillMaxSize()
