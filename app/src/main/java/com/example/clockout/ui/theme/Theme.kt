@@ -17,10 +17,11 @@ private val LightColorScheme = lightColorScheme(
 // Tertiary: Simple App no need for multiple colors - same as primary for TimePicker
     tertiaryContainer =  DarkOrange,
     onTertiaryContainer = Color.White,
-    background = DarkOrange,
+    background = Color.Transparent,
 // Surface
     surface = Color.White,
     surfaceVariant = Color.White, // Card BG
+    surfaceTint = Color.Gray,
     onSurface = Color.Black,
 )
 
