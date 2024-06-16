@@ -21,17 +21,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             ClockoutTheme {
                 Scaffold(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .background(
-                            brush = Brush.verticalGradient(
-                                colors = listOf(
-                                    Color(0xFFFF8000).copy(alpha = 1f),// Light orange with 50% opacity
-                                    Color(0xFFFF8000).copy(alpha = 0.5f), // Light orange
-                                )
-
-                            )
-                        )
+                    modifier = Modifier.fillMaxSize()
                 ) { innerPadding ->
                     App(modifier = Modifier.padding(innerPadding))
                 }
@@ -50,8 +40,8 @@ fun AppPreview() {
                 .background(
                     brush = Brush.verticalGradient(
                         colors = listOf(
-                            Color(0xFFFF8000).copy(alpha = 1f),// Light orange with 50% opacity
-                            Color(0xFFFF8000).copy(alpha = 0.5f), // Light orange
+                            Color(0xFFFF8000).copy(alpha = 1f),
+                            Color(0xFFFF8000).copy(alpha = 0.5f),
                         )
 
                     )
